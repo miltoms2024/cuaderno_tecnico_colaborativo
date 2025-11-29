@@ -1,0 +1,459 @@
+/*
+ * 1. Body y fondo
+ * ----------------
+ */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to bottom, #E8F5E9, #ffffff);
+  color: #333;
+  min-height: 100vh;
+}
+
+/*
+ * 2. Contenedor principal
+ * ------------------------
+ */
+.app-container {
+  max-width: 1200px; /* unificado */
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.main-content {
+  padding: 20px;
+  margin: auto; /* evita duplicar límites de ancho */
+}
+
+.note-form-section,
+.notes-list-section {
+  margin-bottom: 40px;
+}
+
+/*
+ * 3. Cabecera
+ * ------------
+ */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 2px solid #ddd;
+  margin-bottom: 30px;
+}
+
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/*
+ * 4. Formulario de notas
+ * -----------------------
+ */
+.note-form-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.note-form-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.note-form-container input[type="text"],
+.note-form-container textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.note-form-container button[type="submit"] {
+  padding: 10px 15px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.note-form-container h3 {
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+  color: #333;
+}
+
+.note-form-container input[type="file"] {
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+
+.file-info {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
+/*
+ * 5. Grid de notas
+ * -----------------
+ */
+.notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.note-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  border-left: 5px solid #007bff;
+}
+
+.note-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.delete-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/*
+ * 6. Pantalla de login (dos columnas)
+ * ------------------------------------
+ */
+.login-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  max-width: 1200px; /* unificado */
+  margin: 50px auto 0;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Columna de la imagen */
+.login-image-column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e6ffe6;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+}
+
+.image-placeholder img {
+  max-width: 250px;
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  object-fit: contain;
+}
+
+.image-placeholder p {
+  color: #666;
+  font-style: italic;
+  margin-top: 10px;
+}
+
+/* Columna del formulario */
+.login-form-column {
+  padding: 25px; /* reducido para menor altura */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login-form-column h2 {
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.login-form-column p {
+  color: #666;
+  margin-bottom: 30px;
+}
+
+/* Formulario */
+.login-form label {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.login-button {
+  width: 100%;
+  padding: 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 10px;
+  transition: background-color 0.3s;
+}
+
+.login-button:hover {
+  background-color: #0056b3;
+}
+
+.register-text {
+  text-align: center;
+  margin-top: 25px !important; /* sobrescribe el margin-bottom anterior */
+}
+.register-link {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Añadido para mejorar interacción */
+.register-link {
+  cursor: pointer; /* fuerza la manita al pasar el ratón */
+}
+
+.register-link:hover {
+  text-decoration: underline;
+}
+
+/* Responsive: en móviles apilar columnas y ocultar imagen (decisión de diseño) */
+@media (max-width: 768px) {
+  .login-grid {
+    grid-template-columns: 1fr;
+  }
+  .login-image-column {
+    display: none;
+  }
+}
+
+/* 7. Botones de acción de la nota
+ * --------------------------------
+ */
+.note-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+}
+
+.action-button {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.view-button {
+  background-color: #e7f3ff;
+  color: #0056b3;
+}
+
+.view-button:hover {
+  background-color: #cce5ff;
+}
+
+.download-button {
+  background-color: #e8f5e9;
+  color: #155724;
+}
+
+.download-button:hover {
+  background-color: #d4edda;
+}
+
+/*
+ * 8. Distribución del formulario de notas
+ * ----------------------------------------
+ */
+.note-form-section {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  background-color: #f9f9f9;
+}
+
+.note-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.note-form input[type="text"],
+.note-form textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+/* Campo de archivo */
+.file-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.file-input-group label {
+  font-weight: bold;
+  color: #555;
+}
+
+.file-name-display {
+  font-size: 0.9em;
+  color: #777;
+  margin-top: -10px;
+}
+
+/*
+ * 9. Previsualización de archivos en formulario
+ * ----------------------------------------------
+ */
+.file-feedback {
+  border: 2px solid #5cb85c;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #f0fff0;
+}
+
+.file-thumbnail {
+  max-width: 100px;
+  max-height: 100px;
+  width: auto;
+  height: auto;
+  border-radius: 4px;
+  object-fit: cover;
+  border: 1px solid #ddd;
+}
+
+.file-name-info {
+  font-size: 0.9em;
+  color: #666;
+  margin: 0;
+}
+
+.button-primary {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s;
+}
+
+.button-primary:hover {
+  background-color: #45a049;
+}
+
+/*
+ * 10. Modal de nota
+ * ------------------
+ */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  max-width: 80%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+.modal-close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #555;
+}
+
+.modal-image {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-top: 15px;
+  display: block;
+}
+
+.file-attachment-section {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #007bff;
+  border-left: 5px solid #007bff;
+  background-color: #f0f8ff;
+  border-radius: 4px;
+}
+
+.modal-download-link {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 5px;
+  display: inline-block;
+}
+
+.modal-download-link:hover {
+  text-decoration: underline;
+}

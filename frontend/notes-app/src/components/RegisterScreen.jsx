@@ -16,6 +16,9 @@ function RegisterScreen({ onRegister, onSwitchToLogin }) {
       return;
     }
     onRegister(alias, password);
+    setAlias(""); // limpia campo usuario
+    setPassword(""); // limpia campo contraseña
+    e.target.reset();
   };
 
   return (
@@ -27,12 +30,14 @@ function RegisterScreen({ onRegister, onSwitchToLogin }) {
           placeholder="Alias"
           value={alias}
           onChange={(e) => setAlias(e.target.value)}
+          autoComplete="off"
         />
         <input
           type="password"
           placeholder="Contraseña"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          autoComplete="new-password"
         />
         <button type="submit" className="login-button">Crear cuenta</button>
         <p>

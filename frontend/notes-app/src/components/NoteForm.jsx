@@ -1,15 +1,19 @@
-import { useState, useEffect } from "react";
-// Componente para el formulario de notas
+// Importamos hooks de React
+import { useState, useEffect, useRef } from "react";
 
-function NoteForm({ onSave, editingNote, role }) {
+// Componente del formulario de notas
+function NoteForm({ onSave, editingNote, role, onCancelEdit }) {
+  // Estado local de la nota
   const [noteData, setNoteData] = useState({
     title: "",
     content: "",
     imageUrl: null,
   });
 
+  // Referencia al input de archivo para poder limpiarlo
+  const fileInputRef = useRef(null);
 
-  // Si hay una nota en edición, cargar sus datos
+  // Cargar datos si estamos editando una nota
   useEffect(() => {
     if (editingNote) {
       setNoteData({
@@ -22,16 +26,13 @@ function NoteForm({ onSave, editingNote, role }) {
     }
   }, [editingNote]);
 
-   // Manejar cambios en los campos de texto
-
+  // Manejar cambios en campos de texto
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNoteData({ ...noteData, [name]: value });
   };
 
-
   // Manejar subida de archivo
-
   const handleFileChange = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -55,9 +56,22 @@ function NoteForm({ onSave, editingNote, role }) {
     }
   };
 
+  // Cancelar archivo adjunto
+  const handleCancelFile = () => {
+    setNoteData({ ...noteData, imageUrl: null });
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+  };
 
-   // Manejar envío del formulario
+  // Cancelar edición de nota
+  const handleCancelEdit = () => {
+    setNoteData({ title: "", content: "", imageUrl: null });
+    if (fileInputRef.current) fileInputRef.current.value = "";
+    onCancelEdit(); // avisa al padre que ya no hay edición
+  };
 
+  // Guardar nota
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!noteData.title || !noteData.content) {
@@ -70,6 +84,7 @@ function NoteForm({ onSave, editingNote, role }) {
 
   return (
     <form className="note-form" onSubmit={handleSubmit}>
+      {/* Campo título */}
       <input
         type="text"
         name="title"
@@ -77,20 +92,51 @@ function NoteForm({ onSave, editingNote, role }) {
         value={noteData.title}
         onChange={handleChange}
       />
+
+      {/* Campo contenido */}
       <textarea
         name="content"
         placeholder="Contenido"
         value={noteData.content}
         onChange={handleChange}
       />
-      <input type="file" accept="image/*" onChange={handleFileChange} />
-      
+      {/* Campo archivo */}
+      <div className="file-input-group">
+        <input
+          type="file"
+          accept=".pdf,.txt,.doc,.docx,.xls,.xlsx,.ppt,.pptx,image/*"
+          ref={fileInputRef}
+          onChange={handleFileChange}
+        />
+
+        {/* Botón cancelar archivo → solo aparece si hay adjunto */}
+        {noteData.imageUrl && (
+          <button type="button" onClick={handleCancelFile} className="cancel-file-btn">
+            Cancelar archivo
+          </button>
+        )}
+      </div>
+
+
+      {/* Botones de acción */}
       {role !== "user" && (
-        <button type="submit">
-          {editingNote ? "Actualizar nota" : "Guardar y Publicar"}
-        </button>
+        <>
+          <button type="submit">
+            {editingNote ? "Actualizar nota" : "Guardar y Publicar"}
+          </button>
+
+          {/* Solo aparece si estamos editando */}
+          {editingNote && (
+            <button
+              type="button"
+              className="cancel-edit"
+              onClick={handleCancelEdit}
+            >
+              Cancelar edición
+            </button>
+          )}
+        </>
       )}
-      
     </form>
   );
 }

@@ -3,7 +3,7 @@ import NoteCard from "./NoteCard";
 
 // Lista de notas, muestra cada nota con sus acciones
 
-function NoteList({ notes, onDelete, onView, onEdit, onDownload, role }) {
+function NoteList({ notes, onDelete, onView, onEdit, role }) {
   return (
     <div className="notes-grid">
       {notes.map((note) => (
@@ -13,7 +13,6 @@ function NoteList({ notes, onDelete, onView, onEdit, onDownload, role }) {
           onDelete={onDelete}
           onView={onView}
           onEdit={onEdit}
-          onDownload={onDownload}
           role={role}
         />
       ))}

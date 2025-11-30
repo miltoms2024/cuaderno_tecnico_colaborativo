@@ -27,6 +27,13 @@ function App() {
     }
   }, [isLoggedIn]);
 
+  // Cancelar edición
+  
+const handleCancelEdit = () => {
+setEditingNote(null);
+};
+
+
   // Guardar o actualizar nota
   const handleSave = async (note) => {
     if (editingNote) {
@@ -144,8 +151,9 @@ function App() {
           </div>
 
           {/* Formulario para crear/editar notas */}
-          <NoteForm onSave={handleSave} editingNote={editingNote} />
-
+          <NoteForm onSave={handleSave} editingNote={editingNote}
+          onCancelEdit={handleCancelEdit} // 👈 aquí conectamos el botón Cancelar edición
+          />   
           {/* Lista de notas */}
           <NoteList
             notes={filteredNotes}

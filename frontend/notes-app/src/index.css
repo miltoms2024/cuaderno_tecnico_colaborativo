@@ -118,6 +118,8 @@ body {
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   border-left: 5px solid #007bff;
+  max-height: 350px;   /* límite vertical */
+  overflow-y: auto;    /* scroll interno si se pasa */
 }
 
 .note-header {
@@ -416,6 +418,15 @@ body {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
   position: relative;
 }
+
+.modal-content img {
+  max-width: 100%;
+  max-height: 70vh;   /* nunca más alta que la pantalla */
+  object-fit: contain;
+  display: block;
+  margin: 15px auto;
+}
+
 
 .modal-close-button {
   position: absolute;

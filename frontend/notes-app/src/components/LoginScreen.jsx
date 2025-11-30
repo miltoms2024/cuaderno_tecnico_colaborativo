@@ -11,6 +11,9 @@ function LoginScreen({ onLogin, onSwitchToRegister }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     onLogin(alias, password);
+    setAlias(""); // Limpia campo de alias
+    setPassword(""); // Limpia campo de contraseña
+    e.target.reset();
   };
 
   return (
@@ -34,15 +37,16 @@ function LoginScreen({ onLogin, onSwitchToRegister }) {
             value={alias}
             onChange={(e) => setAlias(e.target.value)}
             required
+            autoComplete="off"
           />
-
-          <label>Contraseña:</label>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            autoComplete="new-password"
           />
+
 
           <button type="submit" className="login-button">Entrar</button>
         </form>
